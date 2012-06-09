@@ -16,6 +16,24 @@ set(${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_INCLUDE_DIR} CACHE INTERNAL "")
 
 set(PROJECT_FILES
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/BoostGeometryVector.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/assign.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/equals.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/comparable_length.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/length.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/transform.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/detail/assign_values.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/detail/disjoint.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/core/access.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/core/tags.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/core/geometry_id.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/geometries/geometries.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/geometries/vector.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/geometries/concepts/vector_concept.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/geometries/register/vector.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/strategies/strategies.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/strategies/length.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/strategies/tags.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/strategies/cartesian/length_pythagoras.hpp
 )
 
 add_custom_target(

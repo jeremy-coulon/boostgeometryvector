@@ -6,15 +6,18 @@
 
 #pragma once
 
-//===================
-//==  Mathematics  ==
-//===================
-/*
-#include "Mathematics/Geometry/BoostGeometryVector_tags.hpp"
-#include "Mathematics/Geometry/BoostGeometryVector_access.hpp"
-#include "Mathematics/Geometry/BoostGeometryVector_concept.hpp"
-#include "Mathematics/Geometry/BoostGeometryVector_length.hpp"
-#include "Mathematics/Geometry/BoostGeometryVector_comparable_length.hpp"
-#include "Mathematics/Geometry/BoostGeometryVector_transform.hpp"
-#include "Mathematics/Geometry/BoostGeometryVector_register.hpp"
-*/
+//===========================
+//==  BoostGeometryVector  ==
+//===========================
+#include "BoostGeometryVector/core/tags.hpp"
+#include "BoostGeometryVector/core/access.hpp"
+#include "BoostGeometryVector/core/geometry_id.hpp"
+#include "BoostGeometryVector/geometries/concepts/vector_concept.hpp"
+#include "BoostGeometryVector/geometries/register/vector.hpp"
+#include "BoostGeometryVector/geometries/geometries.hpp"
+#include "BoostGeometryVector/strategies/strategies.hpp"
+#include "BoostGeometryVector/algorithms/assign.hpp"
+#include "BoostGeometryVector/algorithms/equals.hpp"
+#include "BoostGeometryVector/algorithms/length.hpp"
+#include "BoostGeometryVector/algorithms/comparable_length.hpp"
+#include "BoostGeometryVector/algorithms/transform.hpp"
