@@ -1,0 +1,57 @@
+This library is a header-only library.
+That means you don't need to compile anything to use it in your own project.
+You can just write :
+
+#include <BoostGeometryVector/BoostGeometryVector.hpp>
+
+--------
+
+*) If you have not alread done so, download source code at https://gitorious.org/boostgeometryvector
+*) In the following steps $SOURCE_DIR refers to your local copy of the project
+
+--------
+
+If you want to generate doxygen documentation, go through the following steps:
+
+*) cd $SOURCE_DIR
+*) mkdir build
+*) cd build
+*) cmake -DBoostGeometryVector_BUILD_DOC:BOOL=TRUE ..
+*) make
+
+Documentation is now available in $SOURCE_DIR/build/share/doc/html/index.html
+
+--------
+
+If you want to build examples, go through the following steps:
+
+*) cd $SOURCE_DIR
+*) mkdir build
+*) cd build
+*) cmake -DBoostGeometryVector_BUILD_EXAMPLE:BOOL=TRUE ..
+*) make
+
+Examples are now available in $SOURCE_DIR/build/bin
+
+--------
+
+If you want to build tests, go through the following steps:
+
+*) cd $SOURCE_DIR
+*) mkdir build
+*) cd build
+*) cmake -DBoostGeometryVector_BUILD_TEST:BOOL=TRUE ..
+*) make
+
+Tests are now available in $SOURCE_DIR/build/bin
+
+--------
+
+Then, if you want to generate a package, go through the following steps:
+
+*) cd $SOURCE_DIR/build
+*) make package
+
+An archive file is now available in the current directory.
+For example BoostGeometryVector_v0.0.1.0.tar.gz.
+Note that if you have built the documentation, it will be automatically included in the package.
