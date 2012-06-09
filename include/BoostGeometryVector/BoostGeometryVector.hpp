@@ -17,6 +17,7 @@
 #include "BoostGeometryVector/geometries/geometries.hpp"
 #include "BoostGeometryVector/strategies/strategies.hpp"
 #include "BoostGeometryVector/algorithms/assign.hpp"
+#include "BoostGeometryVector/algorithms/disjoint.hpp"
 #include "BoostGeometryVector/algorithms/equals.hpp"
 #include "BoostGeometryVector/algorithms/length.hpp"
 #include "BoostGeometryVector/algorithms/comparable_length.hpp"

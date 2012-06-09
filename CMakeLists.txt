@@ -17,8 +17,9 @@ set(${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_INCLUDE_DIR} CACHE INTERNAL "")
 set(PROJECT_FILES
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/BoostGeometryVector.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/assign.hpp
-    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/equals.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/comparable_length.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/disjoint.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/equals.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/length.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/transform.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/detail/assign_values.hpp
