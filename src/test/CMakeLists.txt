@@ -10,8 +10,9 @@ if(BoostGeometryVector_BUILD_TEST)
 
     set(${PROJECT_NAME}_FILES
         ${PROJECT_SOURCE_DIR}/main.cpp
-        ${PROJECT_SOURCE_DIR}/disjoint.cpp
-        ${PROJECT_SOURCE_DIR}/make.cpp
+        ${PROJECT_SOURCE_DIR}/Assign.cpp
+        ${PROJECT_SOURCE_DIR}/GeometryConstructors.cpp
+        ${PROJECT_SOURCE_DIR}/Predicates.cpp
     )
 
     include_directories(

@@ -31,17 +31,17 @@
 
 // Specialize access class per dimension
 #define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS(Vector, Dim, CoordinateType, Get, Set) \
-    template<> struct access<Vector, Dim> \
+    template<typename P> struct access<Vector<P>, Dim> \
     { \
-        static inline CoordinateType get(Vector const& v) { return v. Get; } \
-        static inline void set(Vector& p, CoordinateType const& value) { v. Set = value; } \
+        static inline CoordinateType get(Vector<P> const& v) { return v. Get; } \
+        static inline void set(Vector<P>& v, CoordinateType const& value) { v. Set = value; } \
     };
 
 // Const version
 #define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST(Vector, Dim, CoordinateType, Get) \
-    template<> struct access<Vector, Dim> \
+    template<typename P> struct access<Vector<P>, Dim> \
     { \
-        static inline CoordinateType get(Vector const& v) { return v. Get; } \
+        static inline CoordinateType get(Vector<P> const& v) { return v. Get; } \
     };
 
 // Getter/setter version

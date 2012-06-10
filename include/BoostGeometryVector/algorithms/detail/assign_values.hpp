@@ -83,6 +83,21 @@ namespace boost
             };
 
             template <typename Vector>
+            struct assign<vector_tag, Vector, 4>
+            {
+                typedef typename coordinate_type<Vector>::type coordinate_type;
+
+                template <typename T>
+                static inline void apply(Vector& vector, T const& c1, T const& c2, T const& c3, T const& c4)
+                {
+                    set<0>(vector, boost::numeric_cast<coordinate_type>(c1));
+                    set<1>(vector, boost::numeric_cast<coordinate_type>(c2));
+                    set<2>(vector, boost::numeric_cast<coordinate_type>(c3));
+                    set<3>(vector, boost::numeric_cast<coordinate_type>(c4));
+                }
+            };
+
+            template <typename Vector>
             struct assign_zero<vector_tag, Vector>
                 : detail::assign::assign_zero_vector<Vector>
             {};

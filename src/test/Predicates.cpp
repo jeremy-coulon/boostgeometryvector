@@ -22,22 +22,22 @@ BOOST_AUTO_TEST_SUITE(Predicates)
 
 BOOST_AUTO_TEST_CASE(disjoint)
 {
-    bg::model::vector<int, 2, bg::cs::cartesian> p1(4, 5);
-    bg::model::vector<int, 2, bg::cs::cartesian> p2(4, 5);
-    bg::model::vector<int, 2, bg::cs::cartesian> p3(6, 5);
+    bg::model::vector<int, 2, bg::cs::cartesian> v1(4, 5);
+    bg::model::vector<int, 2, bg::cs::cartesian> v2(4, 5);
+    bg::model::vector<int, 2, bg::cs::cartesian> v3(6, 5);
 
-    BOOST_CHECK(!bg::disjoint(p1, p2));
-    BOOST_CHECK(bg::disjoint(p1, p3));
+    BOOST_CHECK(!bg::disjoint(v1, v2));
+    BOOST_CHECK(bg::disjoint(v1, v3));
 }
 
 BOOST_AUTO_TEST_CASE(equals)
 {
-    bg::model::vector<int, 2, bg::cs::cartesian> p1(4, 5);
-    bg::model::vector<int, 2, bg::cs::cartesian> p2(4, 5);
-    bg::model::vector<int, 2, bg::cs::cartesian> p3(6, 5);
+    bg::model::vector<int, 2, bg::cs::cartesian> v1(4, 5);
+    bg::model::vector<int, 2, bg::cs::cartesian> v2(4, 5);
+    bg::model::vector<int, 2, bg::cs::cartesian> v3(6, 5);
 
-    BOOST_CHECK(bg::equals(p1, p2));
-    BOOST_CHECK(!bg::equals(p1, p3));
+    BOOST_CHECK(bg::equals(v1, v2));
+    BOOST_CHECK(!bg::equals(v1, v3));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
