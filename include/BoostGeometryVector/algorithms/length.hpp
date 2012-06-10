@@ -11,14 +11,12 @@
 //===========================
 #include "BoostGeometryVector/core/tags.hpp"
 #include "BoostGeometryVector/strategies/length.hpp"
-//#include "BoostGeometryVector/strategies/cartesian/length_pythagoras.hpp"
 
 //=============
 //==  Boost  ==
 //=============
 #include <boost/geometry/strategies/default_length_result.hpp>
 #include <boost/geometry/strategies/distance.hpp>
-#include <boost/geometry/strategies/cartesian/distance_pythagoras.hpp>
 #include <boost/geometry/algorithms/length.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/type_traits/is_same.hpp>

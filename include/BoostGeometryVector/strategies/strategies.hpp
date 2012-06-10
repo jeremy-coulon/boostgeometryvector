@@ -12,3 +12,8 @@
 #include "BoostGeometryVector/strategies/tags.hpp"
 #include "BoostGeometryVector/strategies/length.hpp"
 #include "BoostGeometryVector/strategies/cartesian/length_pythagoras.hpp"
+
+//=============
+//==  Boost  ==
+//=============
+#include <boost/geometry/strategies/cartesian/distance_pythagoras.hpp>
