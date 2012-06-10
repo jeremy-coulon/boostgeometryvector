@@ -11,6 +11,7 @@ if(BoostGeometryVector_BUILD_TEST)
     set(${PROJECT_NAME}_FILES
         ${PROJECT_SOURCE_DIR}/main.cpp
         ${PROJECT_SOURCE_DIR}/Assign.cpp
+        ${PROJECT_SOURCE_DIR}/Convert.cpp
         ${PROJECT_SOURCE_DIR}/GeometryConstructors.cpp
         ${PROJECT_SOURCE_DIR}/Predicates.cpp
     )
