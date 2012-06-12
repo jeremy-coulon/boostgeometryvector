@@ -15,6 +15,7 @@ if(BoostGeometryVector_BUILD_TEST)
         ${PROJECT_SOURCE_DIR}/GeometryConstructors.cpp
         ${PROJECT_SOURCE_DIR}/Length.cpp
         ${PROJECT_SOURCE_DIR}/Predicates.cpp
+        ${PROJECT_SOURCE_DIR}/Products.cpp
     )
 
     include_directories(
