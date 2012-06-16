@@ -17,6 +17,7 @@
 #include "BoostGeometryVector/geometries/concepts/vector_concept.hpp"
 #include "BoostGeometryVector/geometries/register/vector.hpp"
 #include "BoostGeometryVector/geometries/geometries.hpp"
+#include "BoostGeometryVector/arithmetic/cross_product.hpp"
 #include "BoostGeometryVector/strategies/strategies.hpp"
 #include "BoostGeometryVector/algorithms/assign.hpp"
 #include "BoostGeometryVector/algorithms/convert.hpp"

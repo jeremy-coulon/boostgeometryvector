@@ -26,6 +26,7 @@ set(PROJECT_FILES
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/detail/assign_values.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/detail/convert_vector_to_vector.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/algorithms/detail/disjoint.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/arithmetic/cross_product.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/core/access.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/core/closure.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/core/point_order.hpp
