@@ -22,7 +22,14 @@
 #include <boost/mpl/int.hpp>
 
 // Starting point, specialize basic traits necessary to register a vector
-#define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, Dim, CoordinateType, CoordinateSystem) \
+#define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, PointType, Dim, CoordinateType, CoordinateSystem) \
+    template<> struct tag< Vector > { typedef vector_tag type; }; \
+    template<> struct point_type< Vector > { typedef PointType type; }; \
+    template<> struct dimension< Vector > : boost::mpl::int_<Dim> {}; \
+    template<> struct coordinate_type< Vector > { typedef CoordinateType type; }; \
+    template<> struct coordinate_system< Vector > { typedef CoordinateSystem type; };
+
+#define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS_TEMPLATED(Vector, Dim, CoordinateType, CoordinateSystem) \
     template<typename P> struct tag< Vector<P> > { typedef vector_tag type; }; \
     template<typename P> struct point_type< Vector<P> > { typedef P type; }; \
     template<typename P> struct dimension< Vector<P> > : boost::mpl::int_<Dim> {}; \
@@ -31,6 +38,13 @@
 
 // Specialize access class per dimension
 #define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS(Vector, Dim, CoordinateType, Get, Set) \
+    template<> struct access<Vector, Dim> \
+    { \
+        static inline CoordinateType get(Vector const& v) { return v. Get; } \
+        static inline void set(Vector& v, CoordinateType const& value) { v. Set = value; } \
+    };
+
+#define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_TEMPLATED(Vector, Dim, CoordinateType, Get, Set) \
     template<typename P> struct access<Vector<P>, Dim> \
     { \
         static inline CoordinateType get(Vector<P> const& v) { return v. Get; } \
@@ -39,6 +53,12 @@
 
 // Const version
 #define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST(Vector, Dim, CoordinateType, Get) \
+    template<> struct access<Vector, Dim> \
+    { \
+        static inline CoordinateType get(Vector const& v) { return v. Get; } \
+    };
+
+#define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST_TEMPLATED(Vector, Dim, CoordinateType, Get) \
     template<typename P> struct access<Vector<P>, Dim> \
     { \
         static inline CoordinateType get(Vector<P> const& v) { return v. Get; } \
@@ -46,6 +66,15 @@
 
 // Getter/setter version
 #define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET(Vector, Dim, CoordinateType, Get, Set) \
+    template<> struct access<Vector, Dim> \
+    { \
+        static inline CoordinateType get(Vector const& v) \
+        { return  v. Get (); } \
+        static inline void set(Vector& v, CoordinateType const& value) \
+        { v. Set ( value ); } \
+    };
+
+#define BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET_TEMPLATED(Vector, Dim, CoordinateType, Get, Set) \
     template<typename P> struct access<Vector<P>, Dim> \
     { \
         static inline CoordinateType get(Vector<P> const& v) \
@@ -53,6 +82,7 @@
         static inline void set(Vector<P>& v, CoordinateType const& value) \
         { v. Set ( value ); } \
     };
+
 
 /*!
 \brief \brief_macro{2D vector type}
@@ -66,11 +96,18 @@
 
 \qbk{[include reference/geometries/register/point.qbk]}
 */
-#define BOOST_GEOMETRY_REGISTER_VECTOR_2D(Vector, CoordinateType, CoordinateSystem, Field0, Field1) \
+#define BOOST_GEOMETRY_REGISTER_VECTOR_2D(Vector, PointType, CoordinateType, CoordinateSystem, Field0, Field1) \
 namespace boost { namespace geometry { namespace traits {  \
-    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, 2, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, PointType, 2, CoordinateType, CoordinateSystem) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS(Vector, 0, CoordinateType, Field0, Field0) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS(Vector, 1, CoordinateType, Field1, Field1) \
+}}}
+
+#define BOOST_GEOMETRY_REGISTER_VECTOR_2D_TEMPLATED(Vector, CoordinateType, CoordinateSystem, Field0, Field1) \
+namespace boost { namespace geometry { namespace traits {  \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS_TEMPLATED(Vector, 2, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_TEMPLATED(Vector, 0, CoordinateType, Field0, Field0) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_TEMPLATED(Vector, 1, CoordinateType, Field1, Field1) \
 }}}
 
 /*!
@@ -84,12 +121,20 @@ namespace boost { namespace geometry { namespace traits {  \
 \param Field1 \param_macro_member{\macro_y}
 \param Field2 \param_macro_member{\macro_z}
 */
-#define BOOST_GEOMETRY_REGISTER_VECTOR_3D(Vector, CoordinateType, CoordinateSystem, Field0, Field1, Field2) \
+#define BOOST_GEOMETRY_REGISTER_VECTOR_3D(Vector, PointType, CoordinateType, CoordinateSystem, Field0, Field1, Field2) \
 namespace boost { namespace geometry { namespace traits {  \
-    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, 3, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, PointType, 3, CoordinateType, CoordinateSystem) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS(Vector, 0, CoordinateType, Field0, Field0) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS(Vector, 1, CoordinateType, Field1, Field1) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS(Vector, 2, CoordinateType, Field2, Field2) \
+}}}
+
+#define BOOST_GEOMETRY_REGISTER_VECTOR_3D_TEMPLATED(Vector, CoordinateType, CoordinateSystem, Field0, Field1, Field2) \
+namespace boost { namespace geometry { namespace traits {  \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS_TEMPLATED(Vector, 3, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_TEMPLATED(Vector, 0, CoordinateType, Field0, Field0) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_TEMPLATED(Vector, 1, CoordinateType, Field1, Field1) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_TEMPLATED(Vector, 2, CoordinateType, Field2, Field2) \
 }}}
 
 /*!
@@ -102,11 +147,18 @@ namespace boost { namespace geometry { namespace traits {  \
 \param Field0 \param_macro_member{\macro_x}
 \param Field1 \param_macro_member{\macro_y}
 */
-#define BOOST_GEOMETRY_REGISTER_VECTOR_2D_CONST(Vector, CoordinateType, CoordinateSystem, Field0, Field1) \
+#define BOOST_GEOMETRY_REGISTER_VECTOR_2D_CONST(Vector, PointType, CoordinateType, CoordinateSystem, Field0, Field1) \
 namespace boost { namespace geometry { namespace traits {  \
-    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, 2, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, PointType, 2, CoordinateType, CoordinateSystem) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST(Vector, 0, CoordinateType, Field0) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST(Vector, 1, CoordinateType, Field1) \
+}}}
+
+#define BOOST_GEOMETRY_REGISTER_VECTOR_2D_CONST_TEMPLATED(Vector, CoordinateType, CoordinateSystem, Field0, Field1) \
+namespace boost { namespace geometry { namespace traits {  \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS_TEMPLATED(Vector, 2, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST_TEMPLATED(Vector, 0, CoordinateType, Field0) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST_TEMPLATED(Vector, 1, CoordinateType, Field1) \
 }}}
 
 /*!
@@ -120,12 +172,20 @@ namespace boost { namespace geometry { namespace traits {  \
 \param Field1 \param_macro_member{\macro_y}
 \param Field2 \param_macro_member{\macro_z}
 */
-#define BOOST_GEOMETRY_REGISTER_VECTOR_3D_CONST(Vector, CoordinateType, CoordinateSystem, Field0, Field1, Field2) \
+#define BOOST_GEOMETRY_REGISTER_VECTOR_3D_CONST(Vector, PointType, CoordinateType, CoordinateSystem, Field0, Field1, Field2) \
 namespace boost { namespace geometry { namespace traits {  \
-    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, 3, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, PointType, 3, CoordinateType, CoordinateSystem) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST(Vector, 0, CoordinateType, Field0) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST(Vector, 1, CoordinateType, Field1) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST(Vector, 2, CoordinateType, Field2) \
+}}}
+
+#define BOOST_GEOMETRY_REGISTER_VECTOR_3D_CONST_TEMPLATED(Vector, CoordinateType, CoordinateSystem, Field0, Field1, Field2) \
+namespace boost { namespace geometry { namespace traits {  \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS_TEMPLATED(Vector, 3, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST_TEMPLATED(Vector, 0, CoordinateType, Field0) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST_TEMPLATED(Vector, 1, CoordinateType, Field1) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_CONST_TEMPLATED(Vector, 2, CoordinateType, Field2) \
 }}}
 
 /*!
@@ -140,11 +200,18 @@ namespace boost { namespace geometry { namespace traits {  \
 \param Set0 \param_macro_getset{set, \macro_x}
 \param Set1 \param_macro_getset{set, \macro_y}
 */
-#define BOOST_GEOMETRY_REGISTER_VECTOR_2D_GET_SET(Vector, CoordinateType, CoordinateSystem, Get0, Get1, Set0, Set1) \
+#define BOOST_GEOMETRY_REGISTER_VECTOR_2D_GET_SET(Vector, PointType, CoordinateType, CoordinateSystem, Get0, Get1, Set0, Set1) \
 namespace boost { namespace geometry { namespace traits {  \
-    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, 2, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, PointType, 2, CoordinateType, CoordinateSystem) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET(Vector, 0, CoordinateType, Get0, Set0) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET(Vector, 1, CoordinateType, Get1, Set1) \
+}}}
+
+#define BOOST_GEOMETRY_REGISTER_VECTOR_2D_GET_SET_TEMPLATED(Vector, CoordinateType, CoordinateSystem, Get0, Get1, Set0, Set1) \
+namespace boost { namespace geometry { namespace traits {  \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS_TEMPLATED(Vector, 2, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET_TEMPLATED(Vector, 0, CoordinateType, Get0, Set0) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET_TEMPLATED(Vector, 1, CoordinateType, Get1, Set1) \
 }}}
 
 /*!
@@ -161,10 +228,18 @@ namespace boost { namespace geometry { namespace traits {  \
 \param Set1 \param_macro_getset{set, \macro_y}
 \param Set2 \param_macro_getset{set, \macro_z}
 */
-#define BOOST_GEOMETRY_REGISTER_VECTOR_3D_GET_SET(Vector, CoordinateType, CoordinateSystem, Get0, Get1, Get2, Set0, Set1, Set2) \
+#define BOOST_GEOMETRY_REGISTER_VECTOR_3D_GET_SET(Vector, PointType, CoordinateType, CoordinateSystem, Get0, Get1, Get2, Set0, Set1, Set2) \
 namespace boost { namespace geometry { namespace traits {  \
-    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, 3, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS(Vector, PointType, 3, CoordinateType, CoordinateSystem) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET(Vector, 0, CoordinateType, Get0, Set0) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET(Vector, 1, CoordinateType, Get1, Set1) \
     BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET(Vector, 2, CoordinateType, Get2, Set2) \
+}}}
+
+#define BOOST_GEOMETRY_REGISTER_VECTOR_3D_GET_SET_TEMPLATED(Vector, CoordinateType, CoordinateSystem, Get0, Get1, Get2, Set0, Set1, Set2) \
+namespace boost { namespace geometry { namespace traits {  \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_TRAITS_TEMPLATED(Vector, 3, CoordinateType, CoordinateSystem) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET_TEMPLATED(Vector, 0, CoordinateType, Get0, Set0) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET_TEMPLATED(Vector, 1, CoordinateType, Get1, Set1) \
+    BOOST_GEOMETRY_DETAIL_SPECIALIZE_VECTOR_ACCESS_GET_SET_TEMPLATED(Vector, 2, CoordinateType, Get2, Set2) \
 }}}
