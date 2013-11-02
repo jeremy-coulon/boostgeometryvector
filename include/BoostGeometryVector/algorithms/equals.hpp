@@ -25,8 +25,8 @@ namespace boost
         namespace dispatch
         {
 
-            template <typename P1, typename P2, std::size_t DimensionCount>
-            struct equals<vector_tag, vector_tag, P1, P2, DimensionCount>
+            template <typename P1, typename P2, std::size_t DimensionCount, bool Reverse>
+            struct equals<P1, P2, vector_tag, vector_tag, DimensionCount, Reverse>
                 : geometry::detail::not_
                     <
                         P1,

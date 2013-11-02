@@ -148,9 +148,10 @@ namespace boost
         namespace dispatch
         {
 
-            template <typename Vector1, typename Vector2, typename Strategy>
-            struct transform<vector_tag, vector_tag, Vector1, Vector2, Strategy>
+            template <typename Vector1, typename Vector2>
+            struct transform<Vector1, Vector2, vector_tag, vector_tag>
             {
+                template <typename Strategy>
                 static inline bool apply(Vector1 const& v1, Vector2& v2, Strategy const& strategy)
                 {
                     return detail::transform::transform_vector<

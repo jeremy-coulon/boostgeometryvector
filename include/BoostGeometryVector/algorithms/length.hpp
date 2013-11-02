@@ -30,9 +30,10 @@ namespace boost
             namespace length
             {
 
-                template<typename Vector, typename Strategy>
+                template <typename Vector>
                 struct vector_length
                 {
+                    template <typename Strategy>
                     static inline typename default_length_result<Vector>::type apply(
                             Vector const& v, Strategy const& strategy)
                     {
@@ -46,9 +47,10 @@ namespace boost
         namespace dispatch
         {
 
-            template <typename Geometry, typename Strategy>
-            struct length<vector_tag, Geometry, Strategy>
+            template <typename Geometry>
+            struct length<Geometry, vector_tag>
             {
+                template <typename Strategy>
                 static inline typename default_length_result<Geometry>::type apply(
                         Geometry const& g, Strategy const& /*strategy*/)
                 {
@@ -84,7 +86,7 @@ namespace boost
                             >::type strategy_type;
 
 
-                    return detail::length::vector_length<Geometry, strategy_type>::apply(g, strategy_type());
+                    return detail::length::vector_length<Geometry>::apply(g, strategy_type());
                 }
             };
 

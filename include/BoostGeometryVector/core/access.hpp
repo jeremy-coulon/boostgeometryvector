@@ -22,8 +22,9 @@ namespace boost
     {
         namespace core_dispatch
         {
-            template <typename Vector, typename CoordinateType, std::size_t Dimension>
-            struct access<vector_tag, Vector, CoordinateType, Dimension>
+
+            template <typename Vector, typename CoordinateType, std::size_t Dimension, typename IsPointer>
+            struct access<vector_tag, Vector, CoordinateType, Dimension, IsPointer>
             {
                 static inline CoordinateType get(Vector const& v)
                 {

@@ -23,7 +23,7 @@ struct myvector
     int x, y;
 };
 
-BOOST_GEOMETRY_REGISTER_VECTOR_2D(myvector, int, bg::cs::cartesian, x, y)
+BOOST_GEOMETRY_REGISTER_VECTOR_2D_TEMPLATED(myvector, int, bg::cs::cartesian, x, y)
 
 BOOST_AUTO_TEST_SUITE(Convert)
 

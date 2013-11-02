@@ -10,11 +10,11 @@
 //==  BoostGeometryVector  ==
 //===========================
 #include "BoostGeometryVector/strategies/length.hpp"
+#include "BoostGeometryVector/geometries/concepts/check.hpp"
 
 //=============
 //==  Boost  ==
 //=============
-#include <boost/geometry/geometries/concepts/check.hpp>
 #include <boost/geometry/core/tag.hpp>
 #include <boost/geometry/algorithms/length.hpp>
 #include <boost/geometry/strategies/default_length_result.hpp>

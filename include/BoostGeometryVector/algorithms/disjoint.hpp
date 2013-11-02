@@ -29,8 +29,8 @@ namespace boost
         namespace dispatch
         {
 
-            template <typename Vector1, typename Vector2, std::size_t DimensionCount>
-            struct disjoint<vector_tag, vector_tag, Vector1, Vector2, DimensionCount>
+            template <typename Vector1, typename Vector2, std::size_t DimensionCount, bool Reverse>
+            struct disjoint<Vector1, Vector2, DimensionCount, vector_tag, vector_tag, Reverse>
                 : detail::disjoint::vector_vector<Vector1, Vector2, 0, DimensionCount>
             {};
 

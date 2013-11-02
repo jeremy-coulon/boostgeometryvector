@@ -15,6 +15,8 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/geometry/algorithms/assign.hpp>
 
+#include <boost/geometry/geometries/register/point.hpp>
+
 namespace bg = boost::geometry;
 
 template< typename P >
@@ -23,7 +25,7 @@ struct myvector
     int x, y;
 };
 
-BOOST_GEOMETRY_REGISTER_VECTOR_2D(myvector, int, bg::cs::cartesian, x, y)
+BOOST_GEOMETRY_REGISTER_VECTOR_2D_TEMPLATED(myvector, int, bg::cs::cartesian, x, y)
 
 BOOST_AUTO_TEST_SUITE(Assign)
 

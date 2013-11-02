@@ -37,6 +37,7 @@ set(PROJECT_FILES
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/core/geometry_id.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/geometries/geometries.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/geometries/vector.hpp
+    ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/geometries/concepts/check.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/geometries/concepts/vector_concept.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/geometries/register/vector.hpp
     ${PROJECT_INCLUDE_DIR}/${PROJECT_NAME}/strategies/strategies.hpp
