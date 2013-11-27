@@ -100,6 +100,7 @@ if(${PROJECT_NAME}_PACKAGING_ENABLED)
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         COMPONENT dev
         PATTERN "*~" EXCLUDE
+        PATTERN ".directory" EXCLUDE
     )
 
     mark_as_advanced(CMAKE_INSTALL_PREFIX)
