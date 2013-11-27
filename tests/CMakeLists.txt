@@ -9,14 +9,14 @@ if(BoostGeometryVector_BUILD_TEST)
     find_package(Boost REQUIRED unit_test_framework)
 
     set(${PROJECT_NAME}_FILES
-        ${PROJECT_SOURCE_DIR}/main.cpp
-        ${PROJECT_SOURCE_DIR}/Assign.cpp
-        ${PROJECT_SOURCE_DIR}/Convert.cpp
-        ${PROJECT_SOURCE_DIR}/GeometryConstructors.cpp
-        ${PROJECT_SOURCE_DIR}/Length.cpp
-        ${PROJECT_SOURCE_DIR}/Predicates.cpp
-        ${PROJECT_SOURCE_DIR}/Products.cpp
-        ${PROJECT_SOURCE_DIR}/Transform.cpp
+        ${PROJECT_SOURCE_DIR}/src/main.cpp
+        ${PROJECT_SOURCE_DIR}/src/Assign.cpp
+        ${PROJECT_SOURCE_DIR}/src/Convert.cpp
+        ${PROJECT_SOURCE_DIR}/src/GeometryConstructors.cpp
+        ${PROJECT_SOURCE_DIR}/src/Length.cpp
+        ${PROJECT_SOURCE_DIR}/src/Predicates.cpp
+        ${PROJECT_SOURCE_DIR}/src/Products.cpp
+        ${PROJECT_SOURCE_DIR}/src/Transform.cpp
     )
 
     include_directories(
