@@ -6,7 +6,7 @@ You can just write :
 
 --------
 
-*) If you have not alread done so, download source code at https://gitorious.org/boostgeometryvector
+*) If you have not alread done so, download source code at https://github.com/jeremy-coulon/boostgeometryvector
 *) In the following steps $SOURCE_DIR refers to your local copy of the project
 
 --------
