@@ -17,7 +17,7 @@ if(${PROJECT_NAME}_BUILD_DOC)
     file(COPY ${PROJECT_SOURCE_DIR}/LICENSE_1_0.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
     # Generate Doxyfile
     configure_file(
-        ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in.cmake
+        ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
         ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
         @ONLY
     )
@@ -28,7 +28,7 @@ if(${PROJECT_NAME}_BUILD_DOC)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM
-        SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in.cmake
+        SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
     )
 endif()
 
