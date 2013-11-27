@@ -4,7 +4,7 @@ option(BoostGeometryVector_BUILD_TEST "Build tests" OFF)
 
 if(BoostGeometryVector_BUILD_TEST)
 
-    project(BoostGeometryVectorTest CXX)
+    project(TestBoostGeometryVector CXX)
 
     find_package(Boost REQUIRED unit_test_framework)
 
