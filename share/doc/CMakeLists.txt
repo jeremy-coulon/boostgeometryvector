@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 2.8)
 # Generate VERSION.txt
 file(WRITE
     ${CMAKE_CURRENT_BINARY_DIR}/VERSION.txt
-    "${PROJECT_NAME} v${${PROJECT_NAME}_VERSION}"
+    "${PROJECT_NAME} v${${PROJECT_NAME}_VERSION}\n"
 )
 
 option(${PROJECT_NAME}_BUILD_DOC "Generate API documentation with Doxygen" ${BUILD_ALL})
@@ -36,16 +36,27 @@ endif()
 #  Packaging  #
 ###############
 if(${PROJECT_NAME}_PACKAGING_ENABLED)
-    install(FILES
+    set(doc_files
         ${PROJECT_SOURCE_DIR}/LICENSE_1_0.txt
         ${PROJECT_SOURCE_DIR}/README.txt
         ${PROJECT_SOURCE_DIR}/INSTALL.txt
         ${CMAKE_CURRENT_BINARY_DIR}/VERSION.txt
+    )
+    install(FILES
+        ${doc_files}
+        DESTINATION ${CMAKE_INSTALL_DOCDIR}
+        COMPONENT dev
+    )
+    install(FILES
+        ${doc_files}
         DESTINATION ${CMAKE_INSTALL_DOCDIR}
         COMPONENT doc
     )
     if(${PROJECT_NAME}_BUILD_DOC)
-        install(CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" --build ${CMAKE_BINARY_DIR} --target ${PROJECT_NAME}_DOCUMENTATION)")
+        install(CODE
+            "execute_process(COMMAND \"${CMAKE_COMMAND}\" --build ${CMAKE_BINARY_DIR} --target ${PROJECT_NAME}_DOCUMENTATION)"
+            COMPONENT doc
+        )
         install(DIRECTORY
             ${CMAKE_CURRENT_BINARY_DIR}/html
             DESTINATION ${CMAKE_INSTALL_DOCDIR}
