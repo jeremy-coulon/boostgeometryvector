@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-option(BoostGeometryVector_BUILD_TEST "Build tests" OFF)
+option(BoostGeometryVector_BUILD_TEST "Build tests" ${BUILD_ALL})
 
 if(BoostGeometryVector_BUILD_TEST)
 

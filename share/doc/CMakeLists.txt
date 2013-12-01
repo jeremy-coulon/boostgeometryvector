@@ -10,7 +10,7 @@ file(WRITE
     "${PROJECT_NAME} v${${PROJECT_NAME}_VERSION}"
 )
 
-option(${PROJECT_NAME}_BUILD_DOC "Generate API documentation with Doxygen" OFF)
+option(${PROJECT_NAME}_BUILD_DOC "Generate API documentation with Doxygen" ${BUILD_ALL})
 if(${PROJECT_NAME}_BUILD_DOC)
     find_package(Doxygen REQUIRED)
     # Copy license file to test generated documentation
