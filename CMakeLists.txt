@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 
-list(APPEND CMAKE_MODULE_PATH 
+list(APPEND CMAKE_MODULE_PATH
     ${CMAKE_CURRENT_LIST_DIR}/cmake/Modules
 )
 set(CMAKE_USER_MAKE_RULES_OVERRIDE ${CMAKE_CURRENT_LIST_DIR}/cmake/cmake-tools/DefaultBuildFlags.cmake)
-mark_as_advanced(CMAKE_CODEBLOCKS_EXECUTABLE)
 
 project(BoostGeometryVector NONE)
 
@@ -76,6 +75,12 @@ else()
     set(${PROJECT_NAME}_PACKAGING_ENABLED FALSE CACHE INTERNAL "")
 endif()
 
+#############
+#  Testing  #
+#############
+
+enable_testing()
+
 ####################
 #  Subdirectories  #
 ####################
@@ -103,8 +108,6 @@ if(${PROJECT_NAME}_PACKAGING_ENABLED)
         PATTERN ".directory" EXCLUDE
     )
 
-    mark_as_advanced(CMAKE_INSTALL_PREFIX)
-
     ###########
     #  CPack  #
     ###########
@@ -128,3 +131,8 @@ if(${PROJECT_NAME}_PACKAGING_ENABLED)
     include(CPack)
 
 endif()
+
+mark_as_advanced(
+    CMAKE_CODEBLOCKS_EXECUTABLE
+    CMAKE_INSTALL_PREFIX
+)
