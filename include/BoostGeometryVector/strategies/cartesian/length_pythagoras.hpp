@@ -57,7 +57,7 @@ namespace boost
                 {
 
                     /*!
-                    \brief Strategy to calculate comparable distance between two vectors
+                    \brief Strategy to calculate comparable length between two vectors
                     \ingroup strategies
                     \tparam Vector \tparam_vector
                     \tparam CalculationType \tparam_calculation
@@ -69,14 +69,19 @@ namespace boost
                     >
                     class pythagoras
                     {
-                    public :
-
+                    public:
+                        /// numeric type for calculation
                         typedef typename util::calculation_type::geometric::unary
                                 <
                                     Vector,
                                     CalculationType
                                 >::type calculation_type;
 
+                        /*!
+                        \brief applies the comparable length calculation using pythagoras
+                        \return the calculated comparable length (not taking the square root)
+                        \param v vector
+                        */
                         static inline calculation_type apply(Vector const& v)
                         {
                             BOOST_CONCEPT_ASSERT( (concept::ConstVector<Vector>) );
@@ -108,7 +113,8 @@ namespace boost
                 class pythagoras
                 {
                     typedef comparable::pythagoras<Vector, CalculationType> comparable_type;
-                public :
+                public:
+                    /// numeric type for calculation
                     typedef typename util::calculation_type::geometric::unary
                             <
                                 Vector,
