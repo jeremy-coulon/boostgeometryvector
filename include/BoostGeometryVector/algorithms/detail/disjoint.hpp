@@ -1,5 +1,4 @@
-
-//          Copyright Jeremy Coulon 2012.
+//          Copyright Jeremy Coulon 2012-2013.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -21,6 +20,7 @@ namespace boost
 {
     namespace geometry
     {
+#ifndef DOXYGEN_NO_DETAIL
         namespace detail
         {
             namespace disjoint
@@ -55,7 +55,8 @@ namespace boost
                         return false;
                     }
                 };
-            }
-        }
-    }
-}
+            } // namespace disjoint
+        } // namespace detail
+#endif
+    } // namespace geometry
+} // namespace boost
