@@ -25,10 +25,12 @@ namespace boost
                     template <typename Strategy> struct tag {};
                     template <typename Strategy> struct return_type
                     {
+#ifndef DOXYGEN_NO_IMPL
                         BOOST_MPL_ASSERT_MSG
                         (
                             false, NOT_IMPLEMENTED_FOR_THIS_STRATEGY, (types<Strategy>)
                         );
+#endif
                     };
 
 
@@ -42,10 +44,12 @@ namespace boost
                             >
                     struct similar_type
                     {
+#ifndef DOXYGEN_NO_IMPL
                         BOOST_MPL_ASSERT_MSG
                         (
                             false, NOT_IMPLEMENTED_FOR_THIS_STRATEGY, (types<Strategy, Geometry>)
                         );
+#endif
                     };
 
                     template
@@ -55,26 +59,32 @@ namespace boost
                             >
                     struct get_similar
                     {
+#ifndef DOXYGEN_NO_IMPL
                         BOOST_MPL_ASSERT_MSG
                         (
                             false, NOT_IMPLEMENTED_FOR_THIS_STRATEGY, (types<Strategy, Geometry>)
                         );
+#endif
                     };
 
                     template <typename Strategy> struct comparable_type
                     {
+#ifndef DOXYGEN_NO_IMPL
                         BOOST_MPL_ASSERT_MSG
                         (
                             false, NOT_IMPLEMENTED_FOR_THIS_STRATEGY, (types<Strategy>)
                         );
+#endif
                     };
 
                     template <typename Strategy> struct get_comparable
                     {
+#ifndef DOXYGEN_NO_IMPL
                         BOOST_MPL_ASSERT_MSG
                         (
                             false, NOT_IMPLEMENTED_FOR_THIS_STRATEGY, (types<Strategy>)
                         );
+#endif
                     };
 
                     template <typename Strategy> struct result_from_length {};
@@ -100,10 +110,12 @@ namespace boost
                             >
                     struct default_strategy
                     {
+#ifndef DOXYGEN_NO_IMPL
                         BOOST_MPL_ASSERT_MSG
                         (
                             false, NOT_IMPLEMENTED_FOR_THIS_GEOMETRY_TYPE, (types<Geometry, CsTag1>)
                         );
+#endif
                     };
 
                 } // namespace services
