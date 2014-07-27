@@ -39,16 +39,9 @@ namespace boost
 
                 template <typename Vector1, typename Vector2,
                           std::size_t Dimension1, std::size_t Dimension2,
-                          typename Strategy>
+                          typename Strategy,
+                          typename CalculationType>
                 struct transform_vector
-                {
-                    // Not implemented if Vector1 and Vector2 don't have the same dimension
-                };
-
-                template <typename Vector1, typename Vector2,
-                          std::size_t Dim,
-                          typename Strategy>
-                struct transform_vector<Vector1, Vector2, Dim, Dim, Strategy>
                 {
                     // General case : apply the given strategy
                     static inline bool apply(Vector1 const& v1, Vector2& v2,
@@ -59,10 +52,20 @@ namespace boost
                 };
 
                 // Template partial specialization for translate_transformer
-                template <typename Vector1, typename Vector2, std::size_t Dim>
-                struct transform_vector< Vector1, Vector2, Dim, Dim, strategy::transform::translate_transformer<Vector1, Vector2> >
+                template <typename Vector1, typename Vector2,
+                          std::size_t Dimension1, std::size_t Dimension2,
+                          typename CalculationType>
+                struct transform_vector<
+                        Vector1, Vector2,
+                        Dimension1, Dimension2,
+                        strategy::transform::translate_transformer<CalculationType, Dimension1, Dimension2>,
+                        CalculationType>
                 {
-                    typedef typename strategy::transform::translate_transformer<Vector1, Vector2> Strategy;
+                    typedef typename strategy::transform::translate_transformer<
+                        CalculationType,
+                        Dimension1,
+                        Dimension2
+                    > Strategy;
 
                     static inline bool apply(Vector1 const& v1, Vector2& v2,
                                 Strategy const& /*strategy*/)
@@ -74,10 +77,14 @@ namespace boost
                 };
 
                 // Template partial specialization for 2D ublas_transformer
-                template <typename Vector1, typename Vector2>
-                struct transform_vector< Vector1, Vector2, 2, 2, strategy::transform::ublas_transformer<Vector1, Vector2, 2, 2> >
+                template <typename Vector1, typename Vector2, typename CalculationType>
+                struct transform_vector<
+                        Vector1, Vector2,
+                        2, 2,
+                        strategy::transform::ublas_transformer<CalculationType, 2, 2>,
+                        CalculationType>
                 {
-                    typedef typename strategy::transform::ublas_transformer<Vector1, Vector2, 2, 2> Strategy;
+                    typedef typename strategy::transform::ublas_transformer<CalculationType, 2, 2> Strategy;
                     typedef typename select_coordinate_type<Vector1, Vector2>::type coordinate_type;
                     typedef boost::numeric::ublas::matrix<coordinate_type> matrix_type;
 
@@ -103,10 +110,14 @@ namespace boost
                 };
 
                 // Template partial specialization for 3D ublas_transformer
-                template <typename Vector1, typename Vector2>
-                struct transform_vector< Vector1, Vector2, 3, 3, strategy::transform::ublas_transformer<Vector1, Vector2, 3, 3> >
+                template <typename Vector1, typename Vector2, typename CalculationType>
+                struct transform_vector<
+                        Vector1, Vector2,
+                        3, 3,
+                        strategy::transform::ublas_transformer<CalculationType, 3, 3>,
+                        CalculationType>
                 {
-                    typedef typename strategy::transform::ublas_transformer<Vector1, Vector2, 3, 3> Strategy;
+                    typedef typename strategy::transform::ublas_transformer<CalculationType, 3, 3> Strategy;
                     typedef typename select_coordinate_type<Vector1, Vector2>::type coordinate_type;
                     typedef boost::numeric::ublas::matrix<coordinate_type> matrix_type;
 
@@ -135,9 +146,19 @@ namespace boost
                 };
 
                 // Template partial specialization for inverse_transformer
-                template <typename Vector1, typename Vector2, std::size_t Dim>
-                struct transform_vector< Vector1, Vector2, Dim, Dim, strategy::transform::inverse_transformer<Vector1, Vector2> >
-                        : transform_vector< Vector1, Vector2, Dim, Dim, strategy::transform::ublas_transformer<Vector1, Vector2, Dim, Dim> >
+                template <typename Vector1, typename Vector2,
+                          std::size_t Dimension1, std::size_t Dimension2,
+                          typename CalculationType>
+                struct transform_vector<
+                        Vector1, Vector2,
+                        Dimension1, Dimension2,
+                        strategy::transform::inverse_transformer<CalculationType, Dimension1, Dimension2>,
+                        CalculationType>
+                        : transform_vector<
+                        Vector1, Vector2,
+                        Dimension1, Dimension2,
+                        strategy::transform::ublas_transformer<CalculationType, Dimension1, Dimension2>,
+                        CalculationType>
                 {
                     // Apply will call the correct template specialization for ublas_transformer
                 };
@@ -160,7 +181,8 @@ namespace boost
                             Vector1, Vector2,
                             geometry::dimension<Vector1>::type::value,
                             geometry::dimension<Vector2>::type::value,
-                            Strategy
+                            Strategy,
+                            double // TODO How to get CalculationType from Strategy ?
                             >::apply(v1, v2, strategy);
                 }
             };
